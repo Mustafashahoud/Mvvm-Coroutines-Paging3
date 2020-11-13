@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NewsApp</string>
+    <string name="search_news">Search News</string>
+    <string name="saved_news">Saved News</string>
+    <string name="breaking_news">Breaking News</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="published_at">PUBLISHED AT</string>
+    <string name="title">TITLE</string>
+    <string name="source">SOURCE</string>
+    <string name="search">Search…</string>
+    <string name="error_network_connection">Network error. Please check your Internet connection</string>
+    <string name="retry">Retry</string>
+</resources>
