@@ -4,9 +4,6 @@ import com.mustafa.newsapp.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 
-/**
- *  Copied from https://github.com/skydoves/TheMovies
- */
 internal class RequestInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()

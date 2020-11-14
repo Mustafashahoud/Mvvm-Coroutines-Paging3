@@ -1,10 +1,9 @@
 package com.mustafa.newsapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.mustafa.newsapp.util.UiHelper
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -15,13 +14,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        if(!uiHelper.getConnectivityStatus()) {
-//            uiHelper.showSnackBar(
-//                mainActivityRootView,
-//                resources.getString(R.string.error_network_connection)
-//            )
-//            return
-//        }
     }
 }

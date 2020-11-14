@@ -7,7 +7,7 @@ import androidx.paging.cachedIn
 import com.mustafa.newsapp.repository.BreakingNewsRepository
 
 class BreakingNewsViewModel @ViewModelInject constructor(
-        repository: BreakingNewsRepository
+    repository: BreakingNewsRepository
 ) : ViewModel() {
 
     val breakingNewsStream = repository.getBreakingNewsStream().cachedIn(viewModelScope)

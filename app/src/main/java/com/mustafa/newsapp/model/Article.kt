@@ -18,4 +18,4 @@ data class Article(
     val title: String?,
     val url: String?,
     val urlToImage: String?
-): Serializable
+) : Serializable

@@ -19,7 +19,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideService(@NonNull retrofit: Retrofit ) : NewsService{
+    fun provideService(@NonNull retrofit: Retrofit): NewsService {
         return retrofit.create(NewsService::class.java)
     }
 
