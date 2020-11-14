@@ -13,7 +13,7 @@ import javax.inject.Inject
  * Since the load function is a suspend function, we can call other suspend functions inside it without any issues
  * which we created in APIService.
  */
-class BreakingNewsDataSource @Inject constructor(private val backend: NewsService) :
+class BreakingNewsPagingSource @Inject constructor(private val backend: NewsService) :
     PagingSource<Int, Article>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
@@ -41,9 +41,6 @@ class BreakingNewsDataSource @Inject constructor(private val backend: NewsServic
     }
 
     companion object {
-        // Depending on the backend .. in my case it is 20, when we get less than 20 means it the last page
-        const val perPage : Int = 20
-
         private const val NEWS_API_STARTING_PAGE_INDEX = 1
     }
 }

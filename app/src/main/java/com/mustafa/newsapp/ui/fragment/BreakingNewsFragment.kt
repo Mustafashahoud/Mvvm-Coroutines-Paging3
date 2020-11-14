@@ -1,4 +1,4 @@
-package com.mustafa.newsapp.ui
+package com.mustafa.newsapp.ui.fragment
 
 
 import android.os.Bundle
@@ -12,14 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mustafa.newsapp.R
 import com.mustafa.newsapp.databinding.FragmentBreakingNewsBinding
+import com.mustafa.newsapp.ui.viewmodel.BreakingNewsViewModel
 import com.mustafa.newsapp.ui.adapter.LoadStateAdapter
 import com.mustafa.newsapp.ui.adapter.NewsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -45,20 +46,18 @@ class BreakingNewsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initRecyclerView()
+        binding.retry.setOnClickListener { pagingAdapter.retry() }
+
+        decorateRecyclerView()
+        initAdapter()
         subscribeUI()
 
-    }
-
-    private fun initRecyclerView() {
-        binding.rvBreakingNews.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvBreakingNews.adapter = pagingAdapter
     }
 
     private fun subscribeUI() {
         // It is Too IMPORTANT to use viewLifecycleOwner for fragments but Activities can use lifecycleScope directly
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.breakingNews.collect {
+            viewModel.breakingNewsStream.collect {
                 pagingAdapter.submitData(it)
             }
         }
@@ -84,6 +83,26 @@ class BreakingNewsFragment : Fragment() {
                 ).show()
             }
         }
+    }
+
+    private fun initAdapter() {
+        /**
+         * MyAdapter adapter1 = ...;
+         * AnotherAdapter adapter2 = ...;
+         * ConcatAdapter concatenated = new ConcatAdapter(adapter1, adapter2);
+         * recyclerView.setAdapter(concatenated);
+         */
+        binding.rvBreakingNews.adapter = pagingAdapter.withLoadStateHeaderAndFooter(
+            header = LoadStateAdapter { pagingAdapter.retry() },
+            footer = LoadStateAdapter { pagingAdapter.retry() }
+        )
+        binding.rvBreakingNews.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun decorateRecyclerView() {
+        val decoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+        binding.rvBreakingNews.addItemDecoration(decoration)
+    }
 
 //        viewLifecycleOwner.lifecycleScope.launch {
 //            pagingAdapter.loadStateFlow.collectLatest { loadState ->
@@ -98,17 +117,6 @@ class BreakingNewsFragment : Fragment() {
 //                }
 //            }
 //        }
-
-        binding.rvBreakingNews.adapter = pagingAdapter.withLoadStateHeaderAndFooter(
-            header = LoadStateAdapter {
-                pagingAdapter.retry()
-            },
-            footer = LoadStateAdapter {
-                pagingAdapter.retry()
-            }
-        )
-
-    }
 }
 //        pagingAdapter.addLoadStateListener { loadState ->
 //            /*

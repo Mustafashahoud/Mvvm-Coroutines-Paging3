@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/breakingNewsFragment"
-        android:name="com.mustafa.newsapp.ui.BreakingNewsFragment"
+        android:name="com.mustafa.newsapp.ui.fragment.BreakingNewsFragment"
         android:label="BreakingNewsFragment" >
         <action
             android:id="@+id/action_breakingNewsFragment_to_articleFragment"

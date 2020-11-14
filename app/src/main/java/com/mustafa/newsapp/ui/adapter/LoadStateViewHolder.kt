@@ -20,12 +20,6 @@ class LoadStateViewHolder(
     init {
         binding.retryButton.setOnClickListener { retry.invoke() }
     }
-//    private val binding = LoadStateItemBinding.bind(itemView)
-//    private val progressBar: ProgressBar = binding.progressBar
-//    private val errorMsg: TextView = binding.errorMsg
-//    private val retry: Button = binding.retryButton
-//        .also { it.setOnClickListener { retry.invoke() } }
-
     fun bind(loadState: LoadState) {
         if (loadState is LoadState.Error) {
             binding.errorMsg.text = loadState.error.localizedMessage

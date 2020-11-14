@@ -39,7 +39,6 @@ object NetworkModule {
             .client(okHttpClient)
             .baseUrl("https://newsapi.org")
             .addConverterFactory(GsonConverterFactory.create())
-//            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
     }
 }
