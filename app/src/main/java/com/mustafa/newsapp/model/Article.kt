@@ -9,7 +9,7 @@ import java.io.Serializable
 )
 data class Article(
     @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
+    val id: Long = 1,
     val author: String?,
     val content: String?,
     val description: String?,

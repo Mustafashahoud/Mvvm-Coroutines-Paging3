@@ -3,21 +3,28 @@ package com.mustafa.newsapp.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.mustafa.newsapp.api.NewsService
+import com.mustafa.newsapp.db.ArticleDatabase
 import com.mustafa.newsapp.model.Article
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class BreakingNewsRepository @Inject constructor(private val pagingSource: BreakingNewsPagingSource) {
+class BreakingNewsRepository @Inject constructor(
+    private val service: NewsService,
+    private val database: ArticleDatabase
+) {
 
     fun getBreakingNewsStream(): Flow<PagingData<Article>> {
-        return Pager(
-            PagingConfig(
-                pageSize = NETWORK_PAGE_SIZE,
-                enablePlaceholders = false
-            )
-        ) {
-            pagingSource
-        }.flow
+        val pagingSourceFactory  = database.getArticleDao().queryArticles()
+            return Pager(
+                PagingConfig(
+                    pageSize = NETWORK_PAGE_SIZE,
+                    enablePlaceholders = false
+                ),
+                remoteMediator = BreakingNewsRemoteMediator(service, database)
+            ) {
+            pagingSourceFactory
+        } .flow
     }
 
     companion object {
