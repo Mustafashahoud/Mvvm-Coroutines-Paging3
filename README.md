@@ -31,9 +31,9 @@
 ## App Demo
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/33812602/99159508-32646400-26dd-11eb-90bb-d20331befb0d.jpg" height="400" width="250" />
-  <img src="https://user-images.githubusercontent.com/33812602/99159524-5627aa00-26dd-11eb-9bca-12a8cbaf71ab.jpg" height="400" width="250"/>
-  <img src="https://user-images.githubusercontent.com/33812602/99159541-73f50f00-26dd-11eb-9c73-3f7bf9cc28e1.jpg" height="400" width="250"/>
+  <img src="https://user-images.githubusercontent.com/33812602/99159508-32646400-26dd-11eb-90bb-d20331befb0d.jpg" width="250" />
+  <img src="https://user-images.githubusercontent.com/33812602/99159524-5627aa00-26dd-11eb-9bca-12a8cbaf71ab.jpg" width="250"/>
+  <img src="https://user-images.githubusercontent.com/33812602/99159541-73f50f00-26dd-11eb-9c73-3f7bf9cc28e1.jpg" width="250"/>
 </p>
 
 ## License
