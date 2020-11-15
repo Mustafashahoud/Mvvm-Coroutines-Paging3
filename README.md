@@ -1,6 +1,6 @@
 # NewsApp
 
-* A News Application uses [NEWS API](https://newsapi.org/) based on Kotlin MVVM architecture.
+* A News Application uses [NEWS API](https://newsapi.org/) based on Kotlin and MVVM architecture.
 * A single-activity pattern, using the Navigation component to manage fragment operations.
 * Handles background tasks using coroutines + Flow.
 
@@ -30,7 +30,7 @@
 
 ## App Demo
 
-<p float="left">
+<p float="center">
   <img src="https://user-images.githubusercontent.com/33812602/99159508-32646400-26dd-11eb-90bb-d20331befb0d.jpg" height="400" />
   <img src="https://user-images.githubusercontent.com/33812602/99159524-5627aa00-26dd-11eb-9bca-12a8cbaf71ab.jpg" height="400" />
   <img src="https://user-images.githubusercontent.com/33812602/99159541-73f50f00-26dd-11eb-9c73-3f7bf9cc28e1.jpg" height="400" />
