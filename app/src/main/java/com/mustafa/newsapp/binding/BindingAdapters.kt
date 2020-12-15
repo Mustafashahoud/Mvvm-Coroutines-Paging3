@@ -44,7 +44,7 @@ fun bindToast(view: View, loadState: CombinedLoadStates) {
 @Suppress("unused")
 @BindingAdapter("setDate")
 fun bindDate(view: TextView, date: String) {
-    view.text = date.replace("[TZ]".toRegex(), "  ")
+    view.text = date.replace("[TZ]".toRegex(), "  ").take(19)
 }
 
 

@@ -37,9 +37,11 @@
             android:id="@+id/rvSearchNews"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="1dp"
+            android:clipToPadding="false"
+            android:paddingBottom="?attr/actionBarSize"
             android:scrollbars="vertical"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
             android:text="@{@string/empty_search_result(query)}"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -90,7 +92,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:visibleGone="@{loadState.source.refresh instanceof LoadState.NotLoading &amp;&amp; loadState.append.endOfPaginationReached &amp;&amp; itemCount == 0}"
             tools:layout_editor_absoluteY="247dp" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

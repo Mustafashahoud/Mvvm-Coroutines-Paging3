@@ -29,7 +29,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
     private var searchJob: Job? = null
 
-    private var querySearch = "Covid19"
+    private var querySearch = "CNN"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -37,15 +37,17 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
         initAdapter()
 
-        updateRepoListFromInput(querySearch)
-
-        initSearch()
-
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             query = querySearch
             itemCount = pagingAdapter.itemCount
         }
+
+//        updateRepoListFromInput(querySearch)
+
+        initSearch()
+
+
 
         binding.retry.setOnClickListener { pagingAdapter.retry() }
     }
