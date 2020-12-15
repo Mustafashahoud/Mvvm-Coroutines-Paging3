@@ -4,29 +4,23 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.filter
+import com.mustafa.newsapp.api.NewsService
 import com.mustafa.newsapp.model.Article
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class BreakingNewsRepository @Inject constructor(private val pagingSource: BreakingNewsPagingSource) {
+class SearchNewsRepository @Inject constructor(private val service: NewsService) {
 
-    fun getBreakingNewsStream(): Flow<PagingData<Article>> {
+    fun getSearchNewsStream(query: String): Flow<PagingData<Article>> {
         return Pager(
             PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE,
                 enablePlaceholders = false
             )
         ) {
-            pagingSource
-        }.flow.map { pagingData ->
-            pagingData.filter { article ->
-                article.url != null && article.url.contains(
-                    "https",
-                    true
-                )
-            }
-        }
+            SearchNewsPagingSource(service, query)
+        }.flow
     }
 
     companion object {

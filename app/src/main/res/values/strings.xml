@@ -10,4 +10,5 @@
     <string name="search">Search…</string>
     <string name="error_network_connection">Network error. Please check your Internet connection</string>
     <string name="retry">Retry</string>
+    <string name="empty_search_result">No results for <b>%s</b></string>
 </resources>

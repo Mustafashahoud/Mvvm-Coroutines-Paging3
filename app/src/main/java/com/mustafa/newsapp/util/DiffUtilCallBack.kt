@@ -11,5 +11,10 @@ class DiffUtilCallBack : DiffUtil.ItemCallback<Article>() {
     }
 
     override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =
-        oldItem == newItem
+        oldItem.title == newItem.title &&
+                oldItem.author == newItem.author &&
+                oldItem.content == newItem.content &&
+                oldItem.description == newItem.description &&
+                oldItem.publishedAt == newItem.publishedAt &&
+                oldItem.url == newItem.url
 }

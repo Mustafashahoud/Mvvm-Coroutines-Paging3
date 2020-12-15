@@ -10,7 +10,8 @@ class BreakingNewsViewModel @ViewModelInject constructor(
     repository: BreakingNewsRepository
 ) : ViewModel() {
 
-    val breakingNewsStream = repository.getBreakingNewsStream().cachedIn(viewModelScope)
+    val breakingNewsStream = repository.getBreakingNewsStream()
+        .cachedIn(viewModelScope)
 
 
 }

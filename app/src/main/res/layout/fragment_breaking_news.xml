@@ -3,23 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="androidx.paging.LoadState" />
+
+        <variable
+            name="loadState"
+            type="androidx.paging.CombinedLoadStates" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/include"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
         <androidx.recyclerview.widget.RecyclerView
+
             android:id="@+id/rvBreakingNews"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="false"
+            android:scrollbars="vertical"
             android:paddingBottom="?attr/actionBarSize"
-            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:layoutManager="LinearLayoutManager"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_article_preview"/>
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:visibleGone="@{loadState.refresh instanceof LoadState.NotLoading}"
+            tools:listitem="@layout/item_article_preview" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -31,17 +51,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleGone="@{loadState.refresh instanceof LoadState.Loading}" />
 
-        <Button
+        <TextView
             android:id="@+id/retry"
+            style="@style/RetryStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/retry"
+            app:bindToast="@{loadState}"
+            app:drawableTopCompat="@drawable/ic_retry"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibleGone="@{loadState.refresh instanceof LoadState.Error}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
