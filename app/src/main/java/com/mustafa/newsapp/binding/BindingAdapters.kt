@@ -7,16 +7,13 @@ import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import com.bumptech.glide.Glide
+import coil.load
 
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, url: String?) {
     url?.let {
-        Glide.with(imageView.context)
-            .load(it)
-            .into(imageView)
+        imageView.load(it)
     }
-
 }
 
 @Suppress("unused")
@@ -44,7 +41,7 @@ fun bindToast(view: View, loadState: CombinedLoadStates) {
 @Suppress("unused")
 @BindingAdapter("setDate")
 fun bindDate(view: TextView, date: String) {
-    view.text = date.replace("[TZ]".toRegex(), "  ").take(19)
+    view.text = date.replace("[TZ]".toRegex(), "  ").take(20)
 }
 
 

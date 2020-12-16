@@ -3,11 +3,9 @@ package com.mustafa.newsapp.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.filter
 import com.mustafa.newsapp.api.NewsService
 import com.mustafa.newsapp.model.Article
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SearchNewsRepository @Inject constructor(private val service: NewsService) {

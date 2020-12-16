@@ -3,9 +3,7 @@ package com.mustafa.newsapp.ui.fragment
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
-import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
-import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
@@ -22,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ArticleFragment : Fragment(R.layout.fragment_article) {
 
-    private val viewModel : ArticleViewModel by viewModels()
+    private val viewModel: ArticleViewModel by viewModels()
 
     private lateinit var article: Article
 
@@ -60,7 +58,8 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         }
     }
 
-    private class WebViewClientWithProgressBar(val binding: FragmentArticleBinding) : WebViewClient() {
+    private class WebViewClientWithProgressBar(val binding: FragmentArticleBinding) :
+        WebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             binding.webViewProgressBar.visibility = VISIBLE
         }

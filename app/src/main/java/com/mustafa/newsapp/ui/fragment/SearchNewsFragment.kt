@@ -29,25 +29,15 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
     private var searchJob: Job? = null
 
-    private var querySearch = "CNN"
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding = FragmentSearchNewsBinding.bind(view)
 
+        binding. lifecycleOwner = viewLifecycleOwner
+
         initAdapter()
 
-        binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            query = querySearch
-            itemCount = pagingAdapter.itemCount
-        }
-
-//        updateRepoListFromInput(querySearch)
-
         initSearch()
-
-
 
         binding.retry.setOnClickListener { pagingAdapter.retry() }
     }
@@ -67,7 +57,10 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         // This callback notifies us every time there's a change in the load state via a CombinedLoadStates object.
         // CombinedLoadStates gives us the load state for the PageSource
         // Or it gives us the load state for RemoteMediator needed for network and database case
-        pagingAdapter.addLoadStateListener { loadState -> binding.loadState = loadState }
+        pagingAdapter.addLoadStateListener { loadState ->
+            binding.loadState = loadState
+            binding.itemCount = pagingAdapter.itemCount
+        }
     }
 
 
@@ -76,9 +69,9 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
             SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let {
-                    querySearch = query
-                    updateRepoListFromInput(query)
+                query?.trim()?.let {
+                    search(query)
+                    binding.query = query
                 }
                 return true
             }
@@ -96,14 +89,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         searchJob = viewLifecycleOwner.lifecycleScope.launch {
             viewModel.searchNews(query).collectLatest {
                 pagingAdapter.submitData(it)
-            }
-        }
-    }
 
-    private fun updateRepoListFromInput(query: String) {
-        query.trim().let {
-            if (it.isNotEmpty()) {
-                search(it)
             }
         }
     }

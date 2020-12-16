@@ -16,8 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:foreground="?attr/selectableItemBackground"
-        android:padding="8dp"
-        tools:ignore="UnusedAttribute">
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/ivArticleImage"
