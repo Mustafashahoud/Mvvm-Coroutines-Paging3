@@ -20,7 +20,7 @@
 - [NEWS API](https://newsapi.org/)
 - [Dagger2 Hilt](https://dagger.dev/hilt/) for dependency injection
 - [Retrofit2 & Gson](https://github.com/square/retrofit) for REST API
-- [leakCanary] (https://github.com/square/leakcanary) Memory leak detection library for Android.
+- [leakCanary](https://github.com/square/leakcanary) Memory leak detection library for Android.
 - [Coil](https://github.com/coil-kt/coil) for loading images
 
 ### Branches
