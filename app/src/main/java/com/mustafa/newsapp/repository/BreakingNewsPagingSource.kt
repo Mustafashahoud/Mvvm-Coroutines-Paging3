@@ -1,9 +1,9 @@
 package com.mustafa.newsapp.repository
 
 import androidx.paging.PagingSource
-import com.bumptech.glide.load.HttpException
 import com.mustafa.newsapp.api.NewsService
 import com.mustafa.newsapp.model.Article
+import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
